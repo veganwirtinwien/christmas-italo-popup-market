@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Artisan Popup - Wien 2024</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 50%, #1a472a 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: #fff;
+            font-size: 1em;
+            opacity: 0.8;
+            pointer-events: none;
+            z-index: 1000;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 1.5rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #f4e4c1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(244, 228, 193, 0.3);
+            }
+
+            50% {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 30px rgba(244, 228, 193, 0.6);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #d4af37;
+            font-style: italic;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            flex-wrap: nowrap;
+        }
+
+        .countdown-item {
+            background: rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            border-radius: 10px;
+            padding: 0.75rem 0.5rem;
+            width: 60px;
+            flex-shrink: 0;
+            text-align: center;
+        }
+
+        .countdown-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #f4e4c1;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            display: block;
+            font-size: 0.65rem;
+            color: #d4af37;
+            margin-top: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('./background.png');
+            background-size: cover;
+            background-position: center;
+            margin: 1rem 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        .event-details {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem 1.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .event-details h2 {
+            color: #d4af37;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .detail-item {
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .detail-item strong {
+            color: #f4e4c1;
+            min-width: 80px;
+        }
+
+        .free-entry {
+            display: inline-block;
+            background: #d4af37;
+            color: #1a472a;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 1rem;
+            animation: pulse 2s ease-in-out infinite;
+            text-decoration: none;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary {
+            background: #d4af37;
+            color: #1a472a;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: #f4e4c1;
+            border: 2px solid rgba(212, 175, 55, 0.4);
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .description {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem 1.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .artists-section {
+            margin-top: 2rem;
+        }
+
+        .artists-section h2 {
+            text-align: center;
+            color: #d4af37;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .artist-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .artist-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .artist-image {
+            width: 100%;
+            aspect-ratio: 250 / 313;
+            background: linear-gradient(135deg, #c4342d 0%, #d4af37 100%);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+        }
+
+        .artist-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .artist-name {
+            font-size: 1.5rem;
+            color: #f4e4c1;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .artist-category {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.3);
+            color: #f4e4c1;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .instagram-link:hover {
+            color: #f4e4c1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            margin-top: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.5rem;
+            }
+
+            .hero-image {
+                height: 350px;
+            }
+
+            .container {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>🎄 Christmas Italo PopUp Market 🎄</h1>
+        <p class="subtitle">Attention, Wien! Italia is coming to you 🇮🇹🇦🇹 </p>
+        <div id="countdown" class="countdown"></div>
+    </header>
+
+    <div class="container">
+        <div class="event-details">
+            <h2>Event Details</h2>
+            <div class="detail-item">
+                <strong>📍 Where:</strong>
+                <span>CAPELLA 43 Studio, Fuhrmannsgasse 10, 1080 Wien, Austria</span>
+            </div>
+            <div class="detail-item">
+                <strong>📅 When:</strong>
+                <span>December 13-14, 2025</span>
+            </div>
+            <div class="detail-item">
+                <strong>🕐 Hours:</strong>
+                <span>10:00 - 17:00</span>
+            </div>
+            <a href="https://www.instagram.com/vegan.wirtin.wien" target="_blank" class="free-entry">✨ FREE ENTRY ✨</a>
+
+            <div class="action-buttons">
+                <a href="https://maps.app.goo.gl/vENKUPaAK8EqTgf77" target="_blank" class="btn btn-primary">
+                    📍 View on Maps
+                </a>
+                <button onclick="addToCalendar()" class="btn btn-secondary">
+                    📅 Add to Calendar
+                </button>
+            </div>
+        </div>
+
+        <div class="description">
+            <h2>Attention, Wien!</h2>
+            <p>
+                The Christmas Italo Pop-Up is a curated market infused with Italian flair and feminine creativity.
+            </p>
+            </br>
+            <p>
+                Straight from Trieste, a group of talented women artists brings their handmade treasures — from
+                fashion and ceramics to art and design — each piece telling a story of elegance, craftsmanship, and
+                modern Italian spirit.
+            </p>
+        </div>
+
+        <div class="artists-section">
+            <h2>Meet Our Artists</h2>
+
+            <div class="artist-card">
+                <div class="artist-image">
+                    <img src="sol.png">
+                </div>
+                <div class="artist-name">Sol Levante</div>
+                <span class="artist-category">Kimono Handmade</span>
+                <p style="margin: 1rem 0; line-height: 1.6;">
+                    Arianna & Giulia create handcrafted kimonos using local Italian fabrics and careful, artisanal
+                    techniques. Each piece is designed to make the wearer feel free, light, and truly themselves.
+                </p>
+                <a href="https://www.instagram.com/sol_levante_kimonolab_/" target="_blank" class="instagram-link">
+                    📷 @sol_levante_kimonolab_
+                </a>
+            </div>
+
+            <div class="artist-card">
+                <div class="artist-image">
+                    <img src="aurora.png">
+                </div>
+                <div class="artist-name">Aurora De Vecchi</div>
+                <span class="artist-category">Ceramics</span>
+                <p style="margin: 1rem 0; line-height: 1.6;">
+                    Aurora crafts artisanal ceramics inspired by form, texture, and material exploration. Each object is
+                    designed to bring beauty and authenticity into everyday life.
+                </p>
+                <a href="https://www.instagram.com/auroradevecchi.ceramics/" target="_blank" class="instagram-link">
+                    📷 @auroradevecchi.ceramics
+                </a>
+            </div>
+
+            <div class="artist-card">
+                <div class="artist-image">
+                    <img src="chicca.png">
+                </div>
+                <div class="artist-name">Chicca Mutti</div>
+                <span class="artist-category">Bags & Accessories</span>
+                <p style="margin: 1rem 0; line-height: 1.6;">
+                    Federica, the creator behind Chicca Mutti, makes handmade crochet bags born from a hobby that
+                    quickly became her passion. Her unique pieces reflect her refined taste and her joy in sharing the
+                    world of crochet.
+                </p>
+                <a href="https://www.instagram.com/chicca.mutti/" target="_blank" class="instagram-link">
+                    📷 @chicca.mutti
+                </a>
+            </div>
+
+            <div class="artist-card">
+                <div class="artist-image">
+                    <img src="buongusta.png" />
+                </div>
+                <div class="artist-name">Bronzinska Handmade</div>
+                <span class="artist-category">Upcycle Fashion</span>
+                <p style="margin: 1rem 0; line-height: 1.6;">
+                    Agata from Bronzinska Handmade transforms reclaimed denim, deadstock, and vintage fabrics into
+                    vibrant coats, jackets, and accessories. Her colorful creations, often seen at local craft markets,
+                    embody a playful and sustainable approach to fashion.
+                </p>
+                <a href="https://www.instagram.com/bronzinska_handmade/" target="_blank" class="instagram-link">
+                    📷 @bronzinska_handmade
+                </a>
+            </div>
+
+            <div class="artist-card">
+                <div class="artist-image">
+                    <img src="bianca.png" />
+                </div>
+                <div class="artist-name">Bianca Tosta</div>
+                <span class="artist-category">Italian Coffee</span>
+                <p style="margin: 1rem 0; line-height: 1.6;">
+                    Bianca is a coffee taster, roaster, and educator who turned a chance discovery into her profession.
+                    Through her small roastery and courses, she shares the stories, flavors, and origins that make each
+                    coffee unique.
+                </p>
+                <a href="https://www.instagram.com/biancatosta_ts/" target="_blank" class="instagram-link">
+                    📷 @biancatosta_ts
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>🎅 See you at the Christmas Italo PopUp Market! 🎁</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">
+            For inquiries: wien@veganwirtinwien.at
+        </p>
+    </footer>
+
+    <script>
+        // Add to Calendar function
+        function addToCalendar() {
+            const event = {
+                title: 'Christmas Italo PopUp Market Wien 2025',
+                description: 'A festive celebration of local art & craft featuring 5 unique artisans. Kimono Handmade, Ceramics, Bags & Accessories, Upcycle Fashion, and Italian Coffee. Free entry!',
+                location: 'CAPELLA 43 Studio, Fuhrmannsgasse 10, 1080 Wien, Austria',
+                startDate: '2025-12-13T10:00:00',
+                endDate: '2025-12-14T17:00:00'
+            };
+
+            // Create ICS file content (times in UTC: Vienna CET is UTC+1)
+            const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Christmas Italo PopUp//EN
+BEGIN:VEVENT
+DTSTART:20251213T090000Z
+DTEND:20251214T160000Z
+SUMMARY:${event.title}
+DESCRIPTION:${event.description}
+LOCATION:${event.location}
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR`;
+
+            // Detect browser and platform
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+            if (isIOS || isSafari) {
+                // For Safari/iOS: Use data URL to trigger calendar app directly
+                const dataUrl = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsContent);
+                window.location.href = dataUrl;
+            } else if (isMobile) {
+                // For other mobile browsers (Chrome on Android, etc.): Use blob download
+                const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+                const url = window.URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'christmas-popup-market.ics');
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                window.URL.revokeObjectURL(url);
+            } else {
+                // For desktop: Use Google Calendar
+                const startDate = event.startDate.replace(/[-:]/g, '').replace('.000', '');
+                const endDate = event.endDate.replace(/[-:]/g, '').replace('.000', '');
+                const googleCalUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${startDate}/${endDate}&details=${encodeURIComponent(event.description)}&location=${encodeURIComponent(event.location)}`;
+                window.open(googleCalUrl, '_blank');
+            }
+        }
+
+        // Countdown Timer
+        function updateCountdown() {
+            const eventDate = new Date('December 13, 2025 10:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const countdownEl = document.getElementById('countdown');
+
+            if (distance < 0) {
+                countdownEl.innerHTML = '<div style="font-size: 1.5rem; color: #d4af37; font-weight: bold;">🎉 Event is Live Now! 🎉</div>';
+            } else {
+                countdownEl.innerHTML = `
+                    <div class="countdown-item">
+                        <span class="countdown-number">${days}</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number">${hours}</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number">${minutes}</span>
+                        <span class="countdown-label">Min</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number">${seconds}</span>
+                        <span class="countdown-label">Sec</span>
+                    </div>
+                `;
+            }
+        }
+
+        // Update countdown every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Snowfall animation
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerHTML = '❄';
+            snowflake.style.left = Math.random() * window.innerWidth + 'px';
+            snowflake.style.animationDuration = Math.random() * 3 + 5 + 's';
+            snowflake.style.opacity = Math.random() * 0.6 + 0.4;
+            snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 8000);
+        }
+
+        // Create snowflakes periodically
+        setInterval(createSnowflake, 300);
+
+        // Initial snowflakes
+        for (let i = 0; i < 20; i++) {
+            setTimeout(createSnowflake, i * 100);
+        }
+
+        // Smooth scroll for links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
